@@ -12,7 +12,6 @@ const useHook = () => {
       })
     })
     if (cameraIds.length <= 1) {
-      setCameraId(cameraIds[0])
       return
     }
     if (cameraIds.indexOf(cameraId) === -1) {
