@@ -19,7 +19,7 @@ const useHook = () => {
       return
     }
     else {
-      setCameraId(cameraIds[cameraIds.indexOf(cameraId) + 1])
+      setCameraId(cameraIds[cameraIds.indexOf(cameraId) + 1] || cameraIds[0])
       return
     }
   }
