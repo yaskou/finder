@@ -16,10 +16,10 @@ const useHook = () => {
   }, [])
 
   const handleClick = async () => {
-    if (cameraIds.length <= 1) {
+    if (cameraIds.length < 2) {
       return
     }
-    if (cameraIds.indexOf(cameraId) === -1) {
+    if (!cameraIds.includes(cameraId)) {
       setCameraId(cameraIds[1])
       return
     }
