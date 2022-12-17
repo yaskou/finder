@@ -15,7 +15,7 @@ const useHook = () => {
     navigator.mediaDevices.addEventListener('devicechange', handleCamerasChange)
   }, [])
 
-  const onClick = async () => {
+  const handleClick = async () => {
     if (cameraIds.length <= 1) {
       return
     }
@@ -29,7 +29,7 @@ const useHook = () => {
     }
   }
 
-  return { cameraId, onClick }
+  return { cameraId, handleClick }
 }
 
 export default useHook
