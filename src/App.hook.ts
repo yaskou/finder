@@ -1,16 +1,21 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 const useHook = () => {
+  const [cameraIds, setCameraIds] = useState<string[]>([])
   const [cameraId, setCameraId] = useState('')
 
+  useEffect(() => {
+    const handleCamerasChange = async () => {
+      const devices = await navigator.mediaDevices.enumerateDevices()
+      const cameras = devices.filter(device => device.kind === 'videoinput')
+      setCameraIds(cameras.map(camera => camera.deviceId))
+    }
+
+    handleCamerasChange()
+    navigator.mediaDevices.addEventListener('devicechange', handleCamerasChange)
+  }, [])
+
   const onClick = async () => {
-    const cameraIds = await navigator.mediaDevices.enumerateDevices().then(devices => {
-      return devices.filter(device => {
-        return device.kind === 'videoinput'
-      }).map(camera => {
-        return camera.deviceId
-      })
-    })
     if (cameraIds.length <= 1) {
       return
     }
